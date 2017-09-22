@@ -35,6 +35,10 @@
             display: none;
         }
 
+        #success {
+            visibility: hidden;
+        }
+
         pre {
             font-size: 1rem;
             white-space: pre-wrap;
@@ -54,7 +58,10 @@
             var pwreplacement = String(document.getElementById('passwordBox').value);
             var h2 = null;
 
-            if (pwreplacement == '') { pwreplacement = '&lt;none entered&gt;'; }
+            if (pwreplacement == '') {
+                document.getElementById('main').innerHTML = document.getElementById('success').innerHTML;
+                return false;
+            }
             if (pwreplacement == 'hunter2') { h2 = 'hunter2'; pwreplacement = '*******'; }
 
             for (var i=0; i < pwreplace.length; i++){
@@ -142,6 +149,9 @@ This site was setup to act as a warning. I didn't store nor send your password a
 My recommendation to you: 
 You should change the password you submitted here, "<strong><span class="thepw"></span></strong>" and don't reuse it (or any common variation of it) again.
 </pre>
+    <div id="success">
+        You didn't submit anything there. Good thinking! If this had been a malicious site, it would have gotten your password. Congratulations for following good security practices!
+    </div>
     </div>
 </body>
 </html>
